@@ -14,7 +14,7 @@ export class UserController {
       email: user.email,
       key: user.key,
       nickname: user.nickname,
-      uid: user.uid || uuidv4(),
+      uid: uuidv4(),
       invite: user.invite,
       createAt: user.createAt,
       role: user.role,
