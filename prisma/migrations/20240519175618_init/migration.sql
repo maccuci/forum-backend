@@ -1,8 +1,15 @@
 -- CreateTable
 CREATE TABLE "User" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "name" TEXT
+    "key" TEXT NOT NULL,
+    "nickname" TEXT NOT NULL,
+    "uid" TEXT NOT NULL,
+    "invite" TEXT,
+    "createAt" DATETIME NOT NULL,
+    "role" TEXT NOT NULL,
+    "avatar" TEXT NOT NULL
 );
 
 -- CreateTable
@@ -10,8 +17,8 @@ CREATE TABLE "Post" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "title" TEXT NOT NULL,
     "content" TEXT NOT NULL,
-    "authorId" INTEGER,
-    CONSTRAINT "Post_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User" ("id") ON DELETE SET NULL ON UPDATE CASCADE
+    "authorId" INTEGER NOT NULL,
+    CONSTRAINT "Post_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateTable
@@ -25,3 +32,6 @@ CREATE TABLE "Comment" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_uid_key" ON "User"("uid");

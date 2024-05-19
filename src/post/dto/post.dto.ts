@@ -1,6 +1,7 @@
 import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 import { ApiProperty } from '@nestjs/swagger'
 import { Dto } from "src/lib/dto/Dto";
+import { CommentDto } from "./comment.dto";
 
 export class PostDto extends Dto<PostDto> {
     @ApiProperty()
@@ -27,4 +28,7 @@ export class PostDto extends Dto<PostDto> {
     @IsNumber()
     @IsNotEmpty()
     authorId: number;
+
+    @ApiProperty({ type: CommentDto })
+    comment: CommentDto;
 }

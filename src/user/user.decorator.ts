@@ -8,15 +8,21 @@ import { CreateUserDto } from './dto/create-user.dto';
 
 export interface ReqUserType {
   userId: {
-    id: string;
+    id: number;
   };
-  username: string;
-  user: CreateUserDto
+  name: string;
+  email: string;
 }
 
 export const ReqUser = createParamDecorator(
-  (data: unknown, ctx: ExecutionContext) => {
-    const request = ctx.switchToHttp().getRequest();
-    return request.user;
+  (_data: CreateUserDto, ctx: ExecutionContext) => {
+    const request: any = ctx.switchToHttp().getRequest<Request>();
+    const user = request.user;
+
+    if (!user) {
+      throw new BadRequestException('User was not found');
+    }
+
+    return user;
   },
 );
