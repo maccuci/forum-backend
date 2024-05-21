@@ -22,7 +22,7 @@ export class CreateUserDto extends Dto<CreateUserDto> {
   nickname: string;
 
   // @IsUUID()
-  @IsNotEmpty()
+  // @IsNotEmpty()
   uid: string;
 
   @IsString()
