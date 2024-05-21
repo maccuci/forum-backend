@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 import { Dto } from "src/lib/dto/Dto";
 import { PostDto } from "./post.dto";
 
@@ -21,7 +21,7 @@ export class CommentDto extends Dto<CommentDto> {
     content: string;
 
     @ApiProperty()
-    @IsDate()
+    @IsString()
     @IsNotEmpty()
-    createAt: Date;
+    createAt: string;
 }

@@ -21,7 +21,7 @@ model User {
   nickname String
   uid String @unique
   invite String?
-  createAt DateTime
+  createAt String
   role String
   avatar String
   posts Post[]
@@ -33,6 +33,7 @@ model Post {
   content String
   author User @relation(fields: [authorId], references: [id])
   authorId Int
+  createAt String
   comments Comment[]
 }
 
@@ -41,5 +42,5 @@ model Comment {
   post Post? @relation(fields: [postId], references: [id])
   postId Int?
   content String
-  createAt DateTime
+  createAt String
 }

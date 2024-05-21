@@ -2,6 +2,7 @@ import { Body, ConflictException, Controller, Get, Param, Post } from '@nestjs/c
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { v4 as uuidv4 } from 'uuid';
+import { randomUUID } from 'node:crypto';
 
 @Controller('user')
 export class UserController {
@@ -9,23 +10,25 @@ export class UserController {
 
   @Post('create')
   create(@Body() user: CreateUserDto): Promise<CreateUserDto> {
+    console.log("Received user data:", user);
+
     const createUserDto: CreateUserDto = {
       name: user.name,
       email: user.email,
-      key: user.key,
       nickname: user.nickname,
-      uid: uuidv4(),
-      invite: user.invite,
-      createAt: user.createAt,
-      role: user.role,
-      avatar: user.avatar,
-      posts: user.posts,
+      key: user.key,
+      uid: randomUUID().toString(),
+      invite: '-',
+      createAt: new Date().toISOString(),
+      role: 'member',
+      avatar: '-',
+      posts: [],
     };
 
     return this.userService.create(createUserDto);
   }
 
-  @Get("/find_email/:email")
+  @Get("find_email/:email")
   async getUserByEmail(@Param("email") email: string) {
     const user = this.userService.getUserByEmail(email);
   

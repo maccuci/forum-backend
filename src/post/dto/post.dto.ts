@@ -29,6 +29,11 @@ export class PostDto extends Dto<PostDto> {
     @IsNotEmpty()
     authorId: number;
 
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    createAt: string;
+
     @ApiProperty({ type: CommentDto })
     comment: CommentDto;
 }

@@ -6,3 +6,4 @@ import { PostModule } from './post/post.module';
   imports: [UserModule, PostModule]
 })
 export class AppModule {}
+

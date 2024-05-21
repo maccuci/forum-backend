@@ -7,7 +7,7 @@ CREATE TABLE "User" (
     "nickname" TEXT NOT NULL,
     "uid" TEXT NOT NULL,
     "invite" TEXT,
-    "createAt" DATETIME NOT NULL,
+    "createAt" TEXT NOT NULL,
     "role" TEXT NOT NULL,
     "avatar" TEXT NOT NULL
 );
@@ -18,6 +18,7 @@ CREATE TABLE "Post" (
     "title" TEXT NOT NULL,
     "content" TEXT NOT NULL,
     "authorId" INTEGER NOT NULL,
+    "createAt" TEXT NOT NULL,
     CONSTRAINT "Post_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
@@ -26,7 +27,7 @@ CREATE TABLE "Comment" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "postId" INTEGER,
     "content" TEXT NOT NULL,
-    "createAt" DATETIME NOT NULL,
+    "createAt" TEXT NOT NULL,
     CONSTRAINT "Comment_postId_fkey" FOREIGN KEY ("postId") REFERENCES "Post" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
 
