@@ -1,7 +1,6 @@
 import { Body, ConflictException, Controller, Get, Param, Post } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { v4 as uuidv4 } from 'uuid';
 import { randomUUID } from 'node:crypto';
 
 @Controller('user')
@@ -10,8 +9,6 @@ export class UserController {
 
   @Post('create')
   create(@Body() user: CreateUserDto): Promise<CreateUserDto> {
-    console.log("Received user data:", user);
-
     const createUserDto: CreateUserDto = {
       name: user.name,
       email: user.email,
@@ -42,22 +39,13 @@ export class UserController {
   @Get(':id')
   async getUser(@Param('id') id: string): Promise<CreateUserDto> {
     const userId = parseInt(id);
-    if (isNaN(userId)) {
-      throw new ConflictException('Invalid user ID.');
-    }
-    const user = await this.userService.getUser(userId);
-    console.log('get user by id: ' + id)
-    return user;
-  }
 
-  @Get('avatar/:id')
-  async getAvatar(@Param('id') id: string): Promise<string> {
-    const userId = parseInt(id);
     if (isNaN(userId)) {
       throw new ConflictException('Invalid user ID.');
     }
-    const user = await this.userService.getUser(userId);
-    console.log('get avatar by id: ' + id)
-    return user.avatar;
+
+    const user = await this.userService.getUserById(userId);
+    
+    return user;
   }
 }

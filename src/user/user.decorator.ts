@@ -16,7 +16,7 @@ export interface ReqUserType {
 
 export const ReqUser = createParamDecorator(
   (_data: CreateUserDto, ctx: ExecutionContext) => {
-    const request: any = ctx.switchToHttp().getRequest<Request>();
+    const request = ctx.switchToHttp().getRequest<Request>();
     const user = request.user;
 
     if (!user) {

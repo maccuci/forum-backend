@@ -34,5 +34,5 @@ SQLite (version 3.30 or higher)
 |                              |          |            |          |
 |                              |          |            |          |
 
-### Disclaimer
+## Disclaimer
 **This entire project (backend and frontend) is not open-soure.**
