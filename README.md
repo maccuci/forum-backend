@@ -16,23 +16,22 @@ SQLite (version 3.30 or higher)
 ### Features
 
 - [x] User authentication and authorization
-- Forum posts and comments
-- User profiles and messaging
-- Moderation tools for administrators
-- Customizable themes
-- Integration with third-party services (e.g. email, social media)
+- [ ] Forum posts and comments
+- [ ] User profiles and messaging
+- [ ] Moderation tools for administrators
+- [ ] Customizable themes
+- [ ] Integration with third-party services (e.g. email, social media)
 
 ## You can see the tasks on this table
 
 | Task                         | Priority | Status     | Finished |
 |------------------------------|----------|------------|----------|
-| Create and Login system      | LOW      | Finished   | - [x]    |
-| Integrate JWT Auth security  | HIGH     | Working on | - [ ]    |
-| User settings and others     | MEDIUM   | Working on | - [ ]    |
-| Work on Post/Comment actions | LOW      | -/-        | - [ ]    |
-| Choose a database            | MEDIUM   | Thinking   | - [ ]    |
-|                              |          |            |          |
-|                              |          |            |          |
+| Create and Login system      | ARCHIVED      | Finished   | ✅    |
+| Integrate JWT Auth security  | ARCHIVED     | Finished | ✅    |
+| User settings and others     | MEDIUM   | Working on | ⬜    |
+| Work on Post/Comment systems | LOW      | -/-        | ⬜    |
+| Work on Post/Comment actions | LOW      | -/-        | ⬜    |
+| Choose a database            | MEDIUM   | Thinking   | ⬜    |
 
 ## Disclaimer
 **This entire project (backend and frontend) is not open-soure.**
