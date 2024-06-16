@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { User } from '@prisma/client';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
@@ -15,10 +15,7 @@ export class AuthService {
   ) {}
 
   async login(user: User) {
-    const payload = {
-      username: user.email,
-      sub: { id: user.email },
-    };
+    const payload = { sub: user.id, username: user.email };
 
     const authUser = new AuthUserDto({
       id: user.id,
@@ -28,19 +25,19 @@ export class AuthService {
       avatar: user.avatar,
     });
 
-
-    return new LoginResDto({
+    const login = new LoginResDto({
       user: { ...authUser },
       accessToken: this.jwtService.sign(payload),
       refreshToken: this.jwtService.sign(payload, {
-        expiresIn: '60d',
+        expiresIn: '60s', //60d
       }),
     });
+
+    return login;
   }
 
   async createUser(data: CreateUserDto) {
     const user: any = await this.userService.create(data);
-
     if (user.email) {
       return this.login(user);
     }
@@ -48,11 +45,26 @@ export class AuthService {
 
   async validateUser(email: string, key: string): Promise<LoginAuthDto> {
     const user: LoginAuthDto = await this.userService.getUserByEmail(email);
-
     if (user && user.key === key) {
       return user;
     }
     return null;
+  }
+
+  async validateRefreshToken(token: string, payload: any): Promise<any> {
+    try {
+      const decoded = this.jwtService.verify(token, {
+        secret: process.env.JWT_REFRESH_SECRET,
+      });
+      const user = await this.userService.getUserById(payload.id);
+      if (!user) {
+        throw new UnauthorizedException('Invalid refresh token');
+      }
+
+      return user;
+    } catch (e) {
+      throw new UnauthorizedException('Invalid refresh token');
+    }
   }
 
   async refreshToken(user: User) {

@@ -8,10 +8,10 @@ LogInfo is a custom-built backend application designed to power a forum-style ap
 
 **Prerequisites**
 
-Node.js (version 14 or higher)
-npm (use yarn btw) (version 6 or higher)
-Prisma (version 2.15 or higher)
-SQLite (version 3.30 or higher)
+- Node.js (version 14 or higher)
+- npm (use yarn btw) (version 6 or higher)
+- Prisma (version 2.15 or higher)
+- SQLite (version 3.30 or higher)
 
 ### Features
 
