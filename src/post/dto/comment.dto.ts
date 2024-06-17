@@ -8,9 +8,6 @@ export class CommentDto extends Dto<CommentDto> {
     @IsNumber()
     id: number;
 
-    @ApiProperty({ type: PostDto })
-    post: PostDto;
-
     @ApiProperty()
     @IsNumber()
     postId: number;

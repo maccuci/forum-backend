@@ -4,12 +4,7 @@ import { Type } from 'class-transformer';
 import { Dto } from 'src/lib/dto/Dto';
 import { CommentDto } from './comment.dto';
 
-export class PostDto extends Dto<PostDto> {
-    @ApiProperty()
-    @IsNumber()
-    @IsNotEmpty()
-    id: number;
-
+export class CreatePostDto extends Dto<CreatePostDto> {
     @ApiProperty()
     @IsString()
     @IsNotEmpty()
