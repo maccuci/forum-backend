@@ -31,7 +31,7 @@ SQLite (version 3.30 or higher)
 | User settings and others     | MEDIUM   | Working on | ⬜    |
 | Work on Post/Comment systems | LOW      | -/-        | ⬜    |
 | Work on Post/Comment actions | LOW      | -/-        | ⬜    |
-| Choose a database            | MEDIUM   | Thinking   | ⬜    |
+| Choose a database            | MEDIUM   | Finished   | ✅    |
 
 ## Disclaimer
-**This entire project (backend and frontend) is not open-soure.**
+**This entire backend project is now open-soure.**
