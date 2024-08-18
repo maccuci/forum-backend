@@ -18,9 +18,7 @@ import { User } from '@prisma/client';
 @ApiTags('auth')
 @Controller('auth')
 export class AuthController {
-  constructor(
-    private authService: AuthService
-  ) {}
+  constructor(private authService: AuthService) {}
 
   @UseGuards(LocalAuthGuard)
   @Post('login')
@@ -35,13 +33,13 @@ export class AuthController {
 
   @UseGuards(JwtAuthGuard)
   @Get('profile')
-  getProfile(@Request() req) {
-    return req.body;
+  getProfile(@ReqUser() req: User) {
+    return req;
   }
 
   @UseGuards(RefreshJwtGuard)
   @Post('refresh')
-  async refreshToken(@Request() req) {
-    return this.authService.refreshToken(req.body);
+  async refreshToken(@Request() req: User) {
+    return this.authService.refreshToken(req);
   }
 }
